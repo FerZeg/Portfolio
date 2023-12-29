@@ -7,7 +7,7 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
@@ -15,13 +15,21 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<script type="module" src="/js/index.js"></script>
 	</head>
 	<body>
 		<slot />
 	</body>
 </html>
 <style is:global>
-	:root {
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+	:root[data-theme='dark'] {
+		--text-color: #fff;
+		--bg: #101010;
 		--accent: 136, 58, 234;
 		--accent-light: 224, 204, 250;
 		--accent-dark: 49, 10, 101;
@@ -31,11 +39,18 @@ const { title } = Astro.props;
 			rgb(var(--accent-light)) 30%,
 			white 60%
 		);
+		--radial--gradient: radial-gradient(ellipse 80% 80% at 50% -20%, #7372c34d 0%, #5854924d 20%, #19191a75 60%, #101010 80%, #101010 100%);
+	}
+	body {
+		position: relative;
 	}
 	html {
+		color: var(--text-color);
 		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
+		min-height: 100vh;
+		background-color: #101010;
+		background-image: var(--radial--gradient) ;
+		scroll-behavior: smooth;
 	}
 	code {
 		font-family:

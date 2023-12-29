@@ -1,0 +1,52 @@
+---
+import ThemePicker from "./ThemePicker.astro";
+
+---
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="#estudios">Estudios</a></li>
+            <li><a href="#proyectos">Proyectos</a></li>
+            <li><a href="#about">Sobre mí</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+    <ThemePicker />
+</header>
+
+<style>
+    header {
+        padding: 10px;
+        position: sticky;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        align-items: center;
+    }
+    header nav {
+        padding: 2px 10px;
+        background-color: #0e0e0e;
+        width: max-content;
+        margin: 0 auto;
+        border-radius: 999px;
+    }
+    header ul {
+        padding: 6px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        gap: 20px;
+        list-style: none;
+    }
+    header a {
+        text-decoration: none;
+        color: inherit;
+        border: 1px solid transparent;
+        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    header a:hover {
+        border-bottom: 1px solid #fff;
+    }
+</style>
