@@ -1,27 +1,21 @@
-<div id="theme-picker">
-    <span class="active light"></span>
-</div>
+---
+import Title from '../components/Title.astro'
+import ColorsIcon from './ColorsIcon.astro';
+---
+
+<section id="theme-picker">
+    <Title text="Temas">
+        <ColorsIcon width='52px' height='52px' />
+    </Title>
+    <p>Elige un tema para el porfolio.</p>
+</section>
 
 <style>
-    #theme-picker {
-        background-color: #000000;
-        width: 35px;
-        height: 30px;
-        border-radius: 999px;
-    }
-    #theme-picker > span {
-        width: 17px;
-        height: 17px;
-        border-radius: 50%;
-        visibility: hidden;
-    }
-    #theme-picker > span:hover {
-        cursor: pointer;
-    }
-    #theme-picker > span.light {
-        background-color: #fff;
-    }
-    #theme-picker > span.active {
-        visibility: visible;
+    p {
+        background-image: radial-gradient(circle at 10% 20%, rgb(255, 200, 124) 0%, rgb(252, 251, 121) 90%);
+        -webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 200px;
+		background-position: 0%;
     }
 </style>

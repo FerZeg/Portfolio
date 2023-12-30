@@ -1,5 +1,4 @@
 ---
-import ThemePicker from "./ThemePicker.astro";
 
 ---
 
@@ -12,7 +11,6 @@ import ThemePicker from "./ThemePicker.astro";
             <li><a href="#contacto">Contacto</a></li>
         </ul>
     </nav>
-    <ThemePicker />
 </header>
 
 <style>
@@ -26,27 +24,29 @@ import ThemePicker from "./ThemePicker.astro";
         align-items: center;
     }
     header nav {
-        padding: 2px 10px;
+        padding: 0px 8px;
         background-color: #0e0e0e;
         width: max-content;
+        max-width: 90%;
         margin: 0 auto;
         border-radius: 999px;
     }
     header ul {
-        padding: 6px;
         justify-content: center;
         align-items: center;
         display: flex;
-        gap: 20px;
         list-style: none;
+        padding: 3px 0;
     }
     header a {
+        display: inline;
         text-decoration: none;
         color: inherit;
-        border: 1px solid transparent;
-        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transition: background 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        padding: 5px 10px;
+        border-radius: 999px;
     }
     header a:hover {
-        border-bottom: 1px solid #fff;
+        background-color: #252525;
     }
 </style>

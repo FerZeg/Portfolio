@@ -10,6 +10,8 @@ const setTheme = (theme) => {
     document.documentElement.setAttribute('data-theme', theme)
 }
 
+window.setTheme = setTheme
+
 setTheme(getTheme())
 
   
