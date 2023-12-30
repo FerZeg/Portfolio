@@ -1,13 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
+import Intro from '../components/Intro.astro';
+import Projects from '../components/Projects.astro';
+import Studies from '../components/Studies.astro';
 ---
 
 <Layout title="Fernando porfolio">
 	<Header/>
 	<main>
-		<h1>Hola, soy Fernando.</h1>
-		<h2>Bienvenido a mi <span class="text-gradient">Porfolio</span></h2>
+		<Intro/>
+		<Projects/>
+		<Studies/>
 	</main>
 </Layout>
 
@@ -29,7 +33,7 @@ import Header from '../components/Header.astro';
 		margin-bottom: 0.5em;
 	}
 	h2 {
-		font-weight: 700;
+		font-weight: 600;
 		line-height: 1;
 		text-align: center;
 	}
