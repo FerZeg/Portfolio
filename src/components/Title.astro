@@ -1,0 +1,26 @@
+---
+interface Props {
+    text: string
+}
+
+const { text } = Astro.props
+---
+
+<header>
+    <slot/>
+    <h3>{text}</h3>
+</header>
+
+<style>
+    header {
+        display: flex;
+        margin-bottom: 0.3rem;
+        align-items: center;
+        gap: 8px;
+    }
+    h3 {
+        font-size: 2rem;
+        color: var(--title-color);
+    }
+
+</style>

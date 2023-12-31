@@ -1,0 +1,52 @@
+<div class="studies-time-line">
+    <div>
+        <p class="date">2023</p>
+        <p class="text-gradient">FP Desarrollo Aplicaciones Web</p>
+        <p class="description">
+            Mis estudios más recientes fueron cursados en el IES Maria Moliner en Segovia.
+            Amplié mis conocimientos en el desarrollo web, aprendiendo a utilizar tecnologías como PHP, JavaScript, HTML, Git, CSS, MySQL, etc.
+        </p>
+    </div>
+    <div>
+        <p class="date">2020</p>
+        <p class="text-gradient">Bachillerato Científico</p>
+        <p class="description">Desarrollé habilidades para resolver problemas de una manera crítica y creativa gracias a cursar esta modalidad
+            en el colegio Claret de Segovia.
+        </p>
+    </div>
+</div>
+
+<style>
+    .studies-time-line {
+        border-inline-style: solid;
+        border-inline-color: var(--text-color);
+        border-inline-width: 1px;
+        border-right: none;
+        padding: 0 2rem;
+        margin: 2rem 5px;
+    }
+    .studies-time-line div {
+        margin: 30px 0;
+    }
+    .studies-time-line .date {
+        color: rgba(var(--accent));
+        font-size: 0.9rem;
+        line-height: 3;
+    }
+    .date::before {
+        content: "";
+        width: 0.9rem;
+        height: 0.9rem;
+        background-color: rgb(var(--accent));
+        border-radius: 50%;
+        display: inline-block;
+        top: 0.1rem;
+        left: -1.5rem;
+        position: relative;
+        margin-left: -1rem;
+    }
+    .studies-time-line .description {
+        text-wrap: pretty;
+        font-size: 1rem;
+    }
+</style>

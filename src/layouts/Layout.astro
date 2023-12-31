@@ -4,10 +4,12 @@ interface Props {
 }
 
 const { title } = Astro.props;
+
+import "@fontsource/onest";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
@@ -15,27 +17,50 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<script type="module" src="/js/index.js"></script>
 	</head>
 	<body>
 		<slot />
 	</body>
 </html>
 <style is:global>
-	:root {
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+	:root[data-theme='dark'] {
+		--text-color: rgba(255, 255, 255, 0.9);
+		--title-color: #fffefedd;
+		--bg: #101010;
 		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
+		--text-gradient: radial-gradient(circle at 10% 20%, rgb(255, 200, 124) 0%, rgb(252, 251, 121) 90%);
+		--radial--gradient: radial-gradient(ellipse 80% 80% at 50% -20%, #7372c34d 0%, #5854924d 20%, #19191a75 60%, #101010 80%, #101010 100%);
+	}
+	:root[data-theme='light'] {
+		--text-color: rgba(20, 20, 20, 0.9);
+		--title-color: #050505dd;
+		--bg: #f3f3f3fa;
+		--accent: 136, 58, 234;
+		--text-gradient: linear-gradient(to top, #8e71d2 0%, #de77c1 100%);
+	}
+	:root[data-theme='light2'] {
+		--text-color: rgba(20, 20, 20, 0.9);
+		--title-color: #050505dd;
+		--bg: #fffffffa;
+		--accent: 136, 58, 234;
+		--text-gradient: linear-gradient(120deg, #60d78c 0%, #4b91b4 100%);;
+	}
+	body {
+		position: relative;
 	}
 	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
+		color: var(--text-color);
+		font-family: "Onest", system-ui, sans-serif;
+		min-height: 100vh;
+		background-color: var(--bg);
+		background-image: var(--radial--gradient) ;
+		scroll-behavior: smooth;
 	}
 	code {
 		font-family:
@@ -47,5 +72,38 @@ const { title } = Astro.props;
 			Bitstream Vera Sans Mono,
 			Courier New,
 			monospace;
+	}
+	.text-gradient {
+		background-image: var(--text-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+		font-weight: bold;
+	}
+	h1, h2 {
+		line-height: 1;
+	}
+	h1 {
+		font-size: 2.3rem;
+		line-height: 1;
+		font-weight: 500;
+	}
+	h2 {
+		font-size: 2rem;
+		font-weight: 500;
+	}
+	h3 {
+		font-size: 1.8rem;
+		font-weight: 500;
+	}
+	h4 {
+		font-size: 1.6rem;
+		font-weight: 500;
+	}
+	@media (max-width: 768px) {
+		html {
+			font-size: 15px;
+		}
 	}
 </style>
