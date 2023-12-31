@@ -11,10 +11,10 @@ export const Themes : Theme[] = [
     },
     {
         "name": "dark",
-        "background": "linear-gradient(to right, #434343 0%, black 100%);"
+        "background": "linear-gradient(to top right, #434343 0%, #000000 100%)"
     },
     {
         "name": "light2",
-        "background": "linear-gradient(60deg, #abecd6 0%, #fbed96 100%);"
+        "background": "linear-gradient(60deg, #abecd6 0%, #fbed96 100%)"
     }
 ]

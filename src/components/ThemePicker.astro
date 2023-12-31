@@ -1,7 +1,7 @@
 ---
 import Title from '../components/Title.astro'
 import ColorsIcon from './ColorsIcon.astro';
-import { Themes } from '../utils/themes'
+import { ThemeSelector } from './ReactComp/ThemeSelector';
 ---
 
 <section>
@@ -9,18 +9,7 @@ import { Themes } from '../utils/themes'
         <ColorsIcon width='52px' height='52px' />
     </Title>
     <p>Elige un tema para el porfolio.</p>
-    <div class="themes-container">
-        {Themes.map((theme) => (
-            <div class="theme">
-                <div class="background" style={`background: ${theme.background}`}>
-                    
-                </div>
-                <div class="theme__info">
-                    <h4>{theme.name}</h4>
-                </div>
-            </div>
-        ))}
-    </div>
+    <ThemeSelector client:visible/>
 </section>
 
 <style>
@@ -30,22 +19,5 @@ import { Themes } from '../utils/themes'
 		-webkit-text-fill-color: transparent;
 		background-size: 200px;
 		background-position: 0%;
-    }
-    .themes-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        margin: 20px 0;
-    }
-    .theme {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    .background {
-        width: 5rem;
-        height: 5rem;
-        border-radius: 0.5rem;
-        border: 2px solid transparent;
     }
 </style>
