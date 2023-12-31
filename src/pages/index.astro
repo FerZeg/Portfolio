@@ -18,6 +18,14 @@ import ThemePicker from '../components/ThemePicker.astro';
 </Layout>
 
 <style>
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
 	main {
 		margin: 20px auto;
 		width: 700px;
@@ -28,5 +36,7 @@ import ThemePicker from '../components/ThemePicker.astro';
 		display: flex;
 		flex-direction: column;
 		gap: 3rem;
+		opacity: 0;
+		animation: fade-in 0.5s cubic-bezier(.86,.02,.83,.67) forwards;
 	}
 </style>

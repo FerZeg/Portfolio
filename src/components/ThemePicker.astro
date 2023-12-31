@@ -8,16 +8,6 @@ import { ThemeSelector } from './ReactComp/ThemeSelector';
     <Title text="Temas">
         <ColorsIcon width='52px' height='52px' />
     </Title>
-    <p>Elige un tema para el porfolio.</p>
+    <p class="text-gradient">Elige un tema para el porfolio.</p>
     <ThemeSelector client:visible/>
 </section>
-
-<style>
-    p {
-        background-image: radial-gradient(circle at 10% 20%, rgb(255, 200, 124) 0%, rgb(252, 251, 121) 90%);
-        -webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 200px;
-		background-position: 0%;
-    }
-</style>
