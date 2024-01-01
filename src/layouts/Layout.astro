@@ -32,6 +32,7 @@ import "@fontsource/onest";
 	:root[data-theme='dark'] {
 		--text-color: rgba(255, 255, 255, 0.9);
 		--title-color: #fffefedd;
+		--shadow-color: 255, 255, 245;
 		--bg: #101010;
 		--accent: 136, 58, 234;
 		--text-gradient: radial-gradient(circle at 10% 20%, rgb(255, 200, 124) 0%, rgb(252, 251, 121) 90%);
@@ -40,6 +41,7 @@ import "@fontsource/onest";
 	:root[data-theme='light'] {
 		--text-color: rgba(20, 20, 20, 0.9);
 		--title-color: #050505dd;
+		--shadow-color: 50, 50, 93;
 		--bg: #f3f3f3fa;
 		--accent: 136, 58, 234;
 		--text-gradient: linear-gradient(to top, #8e71d2 0%, #de77c1 100%);
@@ -47,6 +49,7 @@ import "@fontsource/onest";
 	:root[data-theme='light2'] {
 		--text-color: rgba(20, 20, 20, 0.9);
 		--title-color: #050505dd;
+		--shadow-color: 50, 50, 93;
 		--bg: #fffffffa;
 		--accent: 136, 58, 234;
 		--text-gradient: linear-gradient(120deg, #60d78c 0%, #4b91b4 100%);;
@@ -61,6 +64,9 @@ import "@fontsource/onest";
 		background-color: var(--bg);
 		background-image: var(--radial--gradient) ;
 		scroll-behavior: smooth;
+	}
+	.scroll {
+		scroll-margin-top: 4rem;
 	}
 	code {
 		font-family:
@@ -106,4 +112,14 @@ import "@fontsource/onest";
 			font-size: 15px;
 		}
 	}
+	p {
+        text-wrap: pretty;
+        font-size: 1rem;
+		line-height: 1.4;
+		margin: 4px 0;
+    }
+	a {
+		text-decoration: none;
+	}
+	
 </style>

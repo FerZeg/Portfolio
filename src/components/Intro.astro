@@ -1,29 +1,56 @@
-<section id="intro">
-    <h1>Hola, soy Fernando.</h1>
-    <div id="foto-perfil">
-        <img src="img/ejemplo.png" alt="Foto de perfil de Fernando">
+<section id="about" class="scroll">
+    <img src="img/ejemplo.png" alt="Foto de perfil de Fernando">
+    <div>
+        <header>
+            <h1>Hola, soy Fernando</h1>
+            <h2 class="text-gradient">Desarrollador Full Stack</h2>
+        </header>
+        <main>
+            <p>Me metí de lleno en el desarrollo web porque me encanta encontrar soluciones creativas y funcionales. Como desarrollador Full-Stack, abarco todo, pero tengo que admitir que la parte del servidor me apasiona especialmente.</p>
+        </main>
     </div>
 </section>
 
 <style>
-    #intro {
+    #about {
         margin-top: 2rem;
         margin-bottom: 2rem;
+        box-shadow: ;
+        padding: 2rem;
+        border-radius: 1rem;
+        display: flex;
+        gap: 3rem;
+        box-shadow: rgba(var(--shadow-color), 0.35) 0px 5px 15px;
     }
-    h1, h2 {
+    header {
         margin-bottom: 1rem;
     }
-    #foto-perfil {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 128px;
-        height: 128px;
-        margin: 0 auto;
+    main {
+        padding-right: 15px;
     }
-    #foto-perfil img {
-        width: 100%;
-        height: 100%;
+    img {
+        width: 200px;
+        height: 200px;
         border-radius: 50%;
+    }
+    h2 {
+        font-size: 1.5rem;
+        font-weight: 500;
+
+    }
+    h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+    @media (max-width: 768px) {
+        #about {
+            flex-direction: column;
+            align-items: center;
+        }
+        img {
+            width: 160px;
+            height: 160px;
+        }
     }
 </style>
