@@ -15,6 +15,6 @@ export const Themes : Theme[] = [
     },
     {
         "name": "light2",
-        "background": "linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);"
+        "background": "linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%)"
     }
 ]
