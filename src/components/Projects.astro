@@ -1,12 +1,24 @@
 ---
 import Title from '../components/Title.astro'
-import ProjectsIcon from '../components/Icons/ProjectsIcon.astro';
+import ProjectsIcon from './Icons/ProjectsIcon.astro';
+import ProjectCard from './ProjectCard.astro';
 ---
 
 <section id="projects" class="scroll">
     <Title text="Proyectos">
         <ProjectsIcon width='50px' height='50px' />
     </Title>
-    <h3 class="text-gradient">Porfolio</h3>
-    <h3 class="text-gradient">Carnets</h3>
+    <div>
+        <h3 class="text-gradient">Porfolio</h3>
+        <p>Este proyecto está hecho con Astro. Usa también una isla hecha con React para cambiar el Tema.</p>
+    </div>
+
+    <ProjectCard 
+        title="Carnets de Twitch"
+        description="Carnets de Twitch es una aplicación web que permite a los usuarios crear tarjetas de presentación para sus canales de Twitch."
+        image="/images/projects/twitch-cards.png"
+        link="https://carnets.fernandoestrada.dev"
+        repo="https://github.com/FerZeg"
+        tech={['React', 'Next.js', 'Tailwind CSS']}
+    />
 </section>

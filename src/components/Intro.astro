@@ -1,14 +1,20 @@
-<section id="about" class="scroll">
-    <img src="img/ejemplo.png" alt="Foto de perfil de Fernando">
-    <div>
-        <header>
-            <h1>Hola, soy Fernando</h1>
-            <h2 class="text-gradient">Desarrollador Full Stack</h2>
-        </header>
-        <main>
-            <p>Me metí de lleno en el desarrollo web porque me encanta encontrar soluciones creativas y funcionales. Como desarrollador Full-Stack, abarco todo, pero tengo que admitir que la parte del servidor me apasiona especialmente.</p>
-        </main>
+---
+import Contact from "./Contact.astro";
+---
+<section>
+    <div id="about" class="scroll">
+        <img src="img/ejemplo.png" alt="Foto de perfil de Fernando">
+        <div>
+            <header>
+                <h1>Hola, soy Fernando</h1>
+                <h2 class="text-gradient">Desarrollador Full Stack</h2>
+            </header>
+            <main>
+                <p>Me metí de lleno en el desarrollo web porque me encanta encontrar soluciones creativas y funcionales. Como desarrollador Full-Stack, abarco todo, pero tengo que admitir que la parte del servidor me apasiona especialmente.</p>
+            </main>
+        </div>
     </div>
+    <Contact />
 </section>
 
 <style>

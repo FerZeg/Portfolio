@@ -1,0 +1,31 @@
+---
+import SocialBadge from "./SocialBadge.astro";
+import LinkedIn from "./Icons/LinkedIn.astro";
+import GitHub from "./Icons/GitHubIcon.astro";
+import Mail from "./Icons/MailIcon.astro";
+---
+
+
+<nav id="contact" class="scroll">
+    <SocialBadge href="https://www.linkedin.com/in/fernando-estrada-gallardo/">
+        <LinkedIn width="1.8rem" height="1.8rem"/>
+        LinkedIn
+    </SocialBadge>
+    <SocialBadge href="https://github.com/FerZeg">
+        <GitHub width="2rem" height="2rem"/>
+        GitHub
+    </SocialBadge>
+    <SocialBadge href="mailto:fern.j.e.g@gmail.com">
+        <Mail width="2rem" height="2rem"/>
+        fern.j.e.g@gmail.com
+    </SocialBadge>
+</nav>
+
+<style>
+    nav#contact {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+</style>

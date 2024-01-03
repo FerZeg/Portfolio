@@ -1,0 +1,44 @@
+<style>
+    a {
+        --social-badge-color: rgb(64, 64, 64);
+        --social-badge-background-color: rgba(255, 255, 255, 0.1);
+        --social-badge-border-color: rgba(0, 0, 0, 0.1);
+        --inverse-social-badge-color: rgba(255, 255, 255, 0.669);
+    }
+    :root[data-theme="dark"] a {
+        --social-badge-color: rgba(255, 255, 255, 0.669);
+        --social-badge-background-color: rgba(0, 0, 0, 0.1);
+        --social-badge-border-color: rgba(255, 255, 255, 0.1);
+        --inverse-social-badge-color: rgb(64, 64, 64);
+    }
+    .social-badge {
+        background-color: var(--social-badge-background-color);
+        border-color: var(--social-badge-border-color);
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 9999px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.40rem 1.25rem;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--social-badge-color);
+        transition: all 0.3s;
+    }
+
+    .social-badge:hover {
+        background-color: var(--social-badge-color);
+        color: var(--inverse-social-badge-color);
+    }
+</style>
+
+<a
+    class="social-badge"
+    {...Astro.props}
+    target="_blank"
+    rel="noopener noreferrer"
+>
+    <slot />
+</a>
