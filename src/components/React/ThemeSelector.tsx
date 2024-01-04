@@ -25,7 +25,7 @@ export function ThemeSelector() {
                     >
                         
                     </div>
-                    <div className="theme__info">
+                    <div className="theme-info">
                         <h4>{theme.name}</h4>
                     </div>
                 </div>

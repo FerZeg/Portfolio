@@ -3,7 +3,7 @@
         --social-badge-color: rgb(64, 64, 64);
         --social-badge-background-color: rgba(255, 255, 255, 0.1);
         --social-badge-border-color: rgba(0, 0, 0, 0.1);
-        --inverse-social-badge-color: rgba(255, 255, 255, 0.669);
+        --inverse-social-badge-color: rgba(255, 255, 255, 0.846);
     }
     :root[data-theme="dark"] a {
         --social-badge-color: rgba(255, 255, 255, 0.669);
@@ -23,9 +23,9 @@
         gap: 0.5rem;
         padding: 0.40rem 1.25rem;
         font-size: 1rem;
-        font-weight: 700;
+        font-weight: 500;
         color: var(--social-badge-color);
-        transition: all 0.3s;
+        transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     }
 
     .social-badge:hover {

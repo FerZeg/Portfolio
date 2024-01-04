@@ -6,7 +6,6 @@ import Projects from '../components/Projects.astro';
 import Studies from '../components/Studies.astro';
 import ThemePicker from '../components/ThemePicker.astro';
 import Footer from '../components/Footer.astro'
-import Contact from '../components/Contact.astro'
 ---
 
 <Layout title="Porfolio de Fernando J. - Desarrollador Web">
@@ -19,7 +18,12 @@ import Contact from '../components/Contact.astro'
 	</main>
 	<Footer/>
 </Layout>
-
+<style is:global>
+	
+	body > main > section {
+		margin-bottom: 4rem;
+	}
+</style>
 <style>
 	@keyframes fade-in {
 		from {
@@ -30,6 +34,7 @@ import Contact from '../components/Contact.astro'
 		}
 	}
 	main {
+		position: relative;
 		margin: 20px auto;
 		width: 700px;
 		max-width: calc(100% - 2rem);
