@@ -20,7 +20,7 @@ const { title, description, image, repo, link } = Astro.props;
           <div class="project-card__tech">
               <slot/>
           </div>
-          <div>
+          <div class="project-card__links">
             <a class="text-gradient" href={link} target="_blank">Ver</a>
             <a class="text-gradient" href={repo} target="_blank">Repositorio</a>
           </div>
@@ -75,9 +75,17 @@ const { title, description, image, repo, link } = Astro.props;
     text-align: center;
   }
   a {
-    display: block;
+    display: inline-block;
+    border: 1px solid transparent;
+    transition: border 0.3s ease-in-out;
   }
   a:hover {
-    text-decoration: underline;
+    border-bottom: 1px solid rgb(var(--accent));
+  }
+  .project-card__links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
   }
 </style>
