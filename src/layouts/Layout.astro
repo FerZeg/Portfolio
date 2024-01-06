@@ -54,6 +54,17 @@ import "@fontsource/onest";
 		--accent: 136, 58, 234;
 		--text-gradient: linear-gradient(120deg, #60d78c 0%, #4b91b4 100%);;
 	}
+	@keyframes text-pop-up-top {
+	0% {
+		transform: translateY(50px);
+		transform-origin: 25% 25%;
+	}
+	100% {
+		transform: translateY(0px);
+		transform-origin: 50% 50%;
+	}
+	}
+
 	body {
 		position: relative;
 	}
@@ -94,6 +105,7 @@ import "@fontsource/onest";
 		font-size: 2.3rem;
 		line-height: 1;
 		font-weight: 500;
+		animation: text-pop-up-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	}
 	h2 {
 		font-size: 2rem;
@@ -121,5 +133,7 @@ import "@fontsource/onest";
 	a {
 		text-decoration: none;
 	}
+
+
 	
 </style>
