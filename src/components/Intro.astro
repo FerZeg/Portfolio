@@ -11,8 +11,15 @@ import Contact from "./Contact.astro";
             </header>
             <main>
                 <p>En constante aprendizaje y evolución.</p>
-                <p>Lograr soluciones prácticas y creativas proporciona una satisfacción única.</p>
-                <p>Desde Segovia, España.</p>
+                <p id="flex-container">
+                    <span> > Edad: &nbsp;</span>
+                    <span id="first-year">2</span>
+                    <span id="second-year">
+                        <span id="years">
+                        </span>
+                    </span>
+                </p>
+                <p> > Desde Segovia, España.</p>
             </main>
         </div>
     </div>
@@ -29,6 +36,7 @@ import Contact from "./Contact.astro";
         display: flex;
         gap: 3rem;
         box-shadow: rgba(var(--shadow-color), 0.35) 0px 5px 15px;
+
     }
     header {
         margin-bottom: 1rem;
@@ -62,3 +70,85 @@ import Contact from "./Contact.astro";
         }
     }
 </style>
+
+<style is:global>
+    #flex-container {
+        display: flex;
+        align-items: center;
+        max-height: 1.4rem;
+        line-height: 1.4rem;
+    }
+    #second-year {
+        overflow: hidden;
+        height: 1.5rem;
+        width: 1.9rem;
+        display: inline-block;
+        position: relative;
+        margin-left: 2px;
+    }
+    #first-year {
+        height: 1.5rem;
+        display: inline-block;
+        line-height: 1.5rem; /* Ensure consistent line-height */
+    }
+    #years {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        transition: margin-top 2s ease-in-out;
+        position: absolute;
+    }
+    .years-item {
+        display: inline-block;
+        font-size: 1rem;
+        color: var(--text-color);
+        height: 1.5rem; /* Ensure consistent height */
+        line-height: 1.5rem; /* Ensure consistent line-height */
+        width: fit-content;
+    }
+</style>
+
+<script is:inline>
+
+    const $years = document.querySelector('#years');
+    const $firstYear = document.querySelector('#first-year');
+    let animationFinished = false;
+    (() => {
+        if(!$years || !$firstYear) return;
+
+        const years = new Date().getFullYear() - 2002;
+        const firstNumber = String(years).charAt(0);
+        const secondNumber = String(years).charAt(1);
+
+        $firstYear.textContent = firstNumber;
+        $years.innerHTML = "";
+
+        for(let i = 0; i <= secondNumber; i++) {
+            const yearItem = document.createElement('span');
+            yearItem.textContent = i;
+            yearItem.className = 'years-item';
+            if(i == secondNumber) {
+                yearItem.classList.add('active');
+            }
+            $years.appendChild(yearItem);
+        }
+
+        const activeElement = document.querySelector('.years-item.active');
+        const position = activeElement ? activeElement.offsetTop : 0;
+        setTimeout(() => {
+            $years.style.marginTop = `-${position}px`;
+            setTimeout(() => {
+                animationFinished = true;
+            }, 1000);
+        }, 1000);
+
+    })();
+
+    window.addEventListener('resize', () => {
+        console.log('resize');
+        if(!animationFinished) return;
+        const activeElement = document.querySelector('.years-item.active');
+        const position = activeElement ? activeElement.offsetTop : 0;
+        $years.style.marginTop  = `-${position}px`;
+    });
+</script>
