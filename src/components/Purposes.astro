@@ -1,10 +1,19 @@
 ---
 import Title from '../components/Title.astro'
 import Flag from '../components/Icons/Flag.astro';
+import Languages from '../components/Languages.astro';
 ---
 
 <section id="purposes" class="scroll">
     <Title text="Metas">
-        <Flag width='40px' height='40px' />
+        <Flag width='45px' height='45px' />
     </Title>
+    <Languages />
 </section>
+<style>
+    .flag-container {
+        border: 2px solid #2e2e2e;
+        border-radius: 2%;
+        padding: 6px;
+    }
+</style>

@@ -145,7 +145,6 @@ import Contact from "./Contact.astro";
     })();
 
     window.addEventListener('resize', () => {
-        console.log('resize');
         if(!animationFinished) return;
         const activeElement = document.querySelector('.years-item.active');
         const position = activeElement ? activeElement.offsetTop : 0;

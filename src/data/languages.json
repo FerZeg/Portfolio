@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Inglés",
+        "flag": "🇬🇧",
+        "progress": {
+            "now": 70,
+            "next": 85,
+            "future": 95
+        },
+        "description": "Idioma más utilizado en el mundo, clave en el mundo laboral y de la tecnología."
+    },
+    {
+        "name": "Francés",
+        "flag": "🇫🇷",
+        "progress": {
+            "now": 15,
+            "next": 50,
+            "future": 70
+        },
+        "description": "Estudié francés durante un tiempo en el colegio, es interesate y puede ser útil"
+    },
+    {
+        "name": "Portugués",
+        "flag": "🇵🇹",
+        "progress": {
+            "now": 10,
+            "next": 80,
+            "future": 95
+        },
+        "description": "Idioma parecido al español; fácil de aprender; entretenido."
+    },
+    {
+        "name": "Japonés",
+        "flag": "🇯🇵",
+        "progress": {
+            "now": 0,
+            "next": 20,
+            "future": 70
+        },
+        "description": "Reto personal, aprender idioma muy diferente"
+    }
+]

@@ -1,0 +1,96 @@
+---
+import languages from '../data/languages.json'
+---
+
+<div class="languages-container">
+    <p>He llegado a la conclusión que aprender idiomas es muy divertido a la vez que importante para el futuro profesional.</p>
+    <div class="language-picker-container">
+        <button style={`--color: #5a42f5`} value="now">Actual</button>
+        <button style={`--color: #5400a3`} value="next">Medio Plazo</button>
+        <button style={`--color: #198700`} value="future">Largo Plazo</button>
+    </div>
+    <div class="languages">
+        {languages.map(language => (
+            <div class="language">
+                <div class="language-name">
+                    <span class="flag">{language.flag}</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar progress-bar-now progress-bar-active" style={`--progress-bar-width: ${language.progress.now}%; background-color: #5a42f5`}></div>
+                    <div class="progress-bar progress-bar-next" style={`--progress-bar-width: ${language.progress.next}%; background-color: #5400a3`}></div>
+                    <div class="progress-bar progress-bar-future" style={`--progress-bar-width: ${language.progress.future}%; background-color: #198700`}></div>
+                </div>
+            </div>
+        ))}
+    </div>
+</div>
+<script is:inline>
+    const buttons = document.querySelectorAll('.language-picker-container button');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', e => {
+            const selectedProgressBars = document.querySelectorAll('.progress-bar-active');
+            if (selectedProgressBars) {
+                selectedProgressBars.forEach(progressBar => {
+                    progressBar.classList.remove('progress-bar-active');
+                });
+            }
+            const value = e.target.getAttribute('value');
+            const progressBars = document.querySelectorAll('.progress-bar-' + value);
+            progressBars.forEach(progressBar => {
+                progressBar.classList.add('progress-bar-active');
+            });
+        });
+    });
+
+</script>
+<style>
+    .language-picker-container {
+        display: flex;
+        gap: 10px;
+        margin: 1rem 0;
+    }
+    .language-picker-container button {
+        border: none;
+        background-color: transparent;
+        color: var(--color);
+        border: 1px solid var(--color);
+        font-size: 1rem;
+        padding: 5px 0.8rem;
+        font-weight: 500;
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--color);
+            color: var(--bg);
+            border: 1px solid var(--color);
+            transition: all 0.2s ease-in-out;
+        }
+    }
+    .language {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .flag {
+        font-size: 2rem;
+        margin-right: 0.5rem;
+    }
+    .progress-bar-container {
+        position: relative;
+        width: 100%;
+        height: 25px;
+    }
+    .progress-bar {
+        position: absolute;
+        width: var(--progress-bar-width);
+        height: 100%;
+        opacity: 0.1;
+        transition: opacity 0.5s ease-in-out;
+    }
+    .progress-bar-active {
+        opacity: 0.9;
+        z-index: 99;
+    }
+</style>
