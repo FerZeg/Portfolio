@@ -5,7 +5,7 @@ import languages from '../data/languages.json'
 <div class="languages-container">
     <p>He llegado a la conclusión que aprender idiomas es muy divertido a la vez que importante para el futuro profesional.</p>
     <div class="language-picker-container">
-        <button style={`--color: #5a42f5`} value="now">Actual</button>
+        <button style={`--color: #5a42f5`} value="now" class="active">Actual</button>
         <button style={`--color: #5400a3`} value="next">Medio Plazo</button>
         <button style={`--color: #198700`} value="future">Largo Plazo</button>
     </div>
@@ -27,19 +27,63 @@ import languages from '../data/languages.json'
 <script is:inline>
     const buttons = document.querySelectorAll('.language-picker-container button');
 
+    const resetState = () => {
+        buttons.forEach(button => {
+            button.classList.remove('active');
+        });
+        const selectedProgressBars = document.querySelectorAll('.progress-bar-active');
+        if (selectedProgressBars) {
+            selectedProgressBars.forEach(progressBar => {
+                progressBar.classList.remove('progress-bar-active');
+            });
+        }
+    };
+
+    let savedState = 'now';
+
+    const chargeState = () => {
+        resetState();
+        const value = savedState;
+        const progressBars = document.querySelectorAll('.progress-bar-' + value);
+        progressBars.forEach(progressBar => {
+            progressBar.classList.add('progress-bar-active');
+        });
+        buttons.forEach(button => {
+            if(button.value === value) {
+                button.classList.add('active');
+            }
+        });
+    };
+
     buttons.forEach(button => {
         button.addEventListener('click', e => {
-            const selectedProgressBars = document.querySelectorAll('.progress-bar-active');
-            if (selectedProgressBars) {
-                selectedProgressBars.forEach(progressBar => {
-                    progressBar.classList.remove('progress-bar-active');
-                });
-            }
+            savedState = e.target.getAttribute('value');
+            resetState();
+            button.classList.add('active');
             const value = e.target.getAttribute('value');
             const progressBars = document.querySelectorAll('.progress-bar-' + value);
             progressBars.forEach(progressBar => {
                 progressBar.classList.add('progress-bar-active');
             });
+        });
+        button.addEventListener('mouseenter', e => {
+            const value = e.target.getAttribute('value');
+            if(value === savedState) {
+                return;
+            }
+            resetState();
+            const progressBars = document.querySelectorAll('.progress-bar-' + value);
+            progressBars.forEach(progressBar => {
+                progressBar.classList.add('progress-bar-active');
+            });
+            e.target.classList.add('active');
+        });
+        button.addEventListener('mouseleave', e => {
+            const value = e.target.getAttribute('value');
+            if (value === savedState) {
+                return;
+            }
+            chargeState();
         });
     });
 
@@ -59,13 +103,14 @@ import languages from '../data/languages.json'
         padding: 5px 0.8rem;
         font-weight: 500;
         cursor: pointer;
+        transition: background-color 0.3s ease-in, color 0.3s ease-in;
 
-        &:hover {
+        &:hover, &.active {
             background-color: var(--color);
             color: var(--bg);
             border: 1px solid var(--color);
-            transition: all 0.2s ease-in-out;
         }
+
     }
     .language {
         position: relative;
