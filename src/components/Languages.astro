@@ -24,7 +24,11 @@ import languages from '../data/languages.json'
         ))}
     </div>
 </div>
-<script is:inline>
+<script type="module" defer is:inline>
+    import { polyfillCountryFlagEmojis } from "https://cdn.skypack.dev/country-flag-emoji-polyfill";
+    polyfillCountryFlagEmojis();
+
+
     const buttons = document.querySelectorAll('.language-picker-container button');
 
     const resetState = () => {
@@ -121,6 +125,7 @@ import languages from '../data/languages.json'
     .flag {
         font-size: 2rem;
         margin-right: 0.5rem;
+        font-family: "Twemoji Country Flags", "Helvetica", "Comic Sans", serif;
     }
     .progress-bar-container {
         position: relative;
