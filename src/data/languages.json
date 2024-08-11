@@ -23,7 +23,7 @@
         "name": "Portugués",
         "flag": "🇵🇹",
         "progress": {
-            "now": 10,
+            "now": 15,
             "next": 80,
             "future": 95
         },
@@ -34,7 +34,7 @@
         "flag": "🇯🇵",
         "progress": {
             "now": 0,
-            "next": 20,
+            "next": 5,
             "future": 70
         },
         "description": "Reto personal, aprender idioma muy diferente"
