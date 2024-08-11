@@ -6,8 +6,8 @@ import languages from '../data/languages.json'
     <p>He llegado a la conclusión que aprender idiomas es muy divertido a la vez que importante para el futuro profesional.</p>
     <div class="language-picker-container">
         <button style={`--color: #5a42f5`} value="now" class="active">Actual</button>
-        <button style={`--color: #5400a3`} value="next">Medio Plazo</button>
-        <button style={`--color: #198700`} value="future">Largo Plazo</button>
+        <button style={`--color: #9735f2`} value="next">Medio Plazo</button>
+        <button style={`--color: #2edb07`} value="future">Largo Plazo</button>
     </div>
     <div class="languages">
         {languages.map(language => (
@@ -17,8 +17,8 @@ import languages from '../data/languages.json'
                 </div>
                 <div class="progress-bar-container">
                     <div class="progress-bar progress-bar-now progress-bar-active" style={`--progress-bar-width: ${language.progress.now}%; background-color: #5a42f5`}></div>
-                    <div class="progress-bar progress-bar-next" style={`--progress-bar-width: ${language.progress.next}%; background-color: #5400a3`}></div>
-                    <div class="progress-bar progress-bar-future" style={`--progress-bar-width: ${language.progress.future}%; background-color: #198700`}></div>
+                    <div class="progress-bar progress-bar-next" style={`--progress-bar-width: ${language.progress.next}%; background-color: #9735f2`}></div>
+                    <div class="progress-bar progress-bar-future" style={`--progress-bar-width: ${language.progress.future}%; background-color: #2edb07`}></div>
                 </div>
             </div>
         ))}
