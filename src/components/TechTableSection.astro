@@ -1,0 +1,125 @@
+---
+const { class: className, title, data } = Astro.props;
+---
+
+<div class={className}>
+    <header>{title}</header>
+    <tech-items class="tech-items" data-title={title}>
+        {data.map((item: string, index: number) => (
+            <div
+                class="tech-item"
+                draggable="true"
+                data-index={index}
+            >
+                {item}
+            </div>
+        ))}
+    </tech-items>
+</div>
+
+<style scoped>
+    header {
+        font-size: 1.2rem;
+        width: 100%;
+        margin-top: 5px;
+    }
+    .tech-items {
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+        width: 100%;
+        padding: 20px 0;
+    }
+    .tech-item {
+        font-size: 0.7rem;
+        padding: 2px 20px 2px 5px;
+        border-radius: 5px;
+        background-color: #2e2e2e;
+        position: relative;
+        cursor: grab;
+    }
+    .tech-item:active {
+        cursor: grabbing;
+    }
+    .tech-item::after {
+        content: "\2630";
+        font-size: 0.5rem;
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    :global(.tech-item.placeholder) {
+        background-color: rgb(20, 220, 73);
+        border-radius: 5px;
+    }
+    :global(.dragging) {
+        cursor: grabbing;
+    }
+</style>
+
+<script>
+
+class TechItems extends HTMLElement {
+    placeholder: HTMLDivElement;
+    draggedItem: HTMLDivElement | null;
+
+    constructor() {
+        super();
+
+        const techItems = this.querySelectorAll(`.tech-item`);
+        this.draggedItem = null;
+        this.placeholder = document.createElement('div');
+        this.placeholder.classList.add('placeholder', 'tech-item');
+
+        techItems.forEach((item) => {
+            item.addEventListener("dragstart", this.handleDragStart.bind(this) as EventListener);
+            item.addEventListener("dragover", this.handleDragOver.bind(this) as EventListener);
+            item.addEventListener("dragend", this.handleDragEnd.bind(this) as EventListener);
+        });
+    }
+
+    handleDragStart(event: DragEvent) {
+        this.draggedItem = event.target as HTMLDivElement;
+        this.draggedItem.classList.add('dragging');
+        this.placeholder.style.height = `${this.draggedItem.offsetHeight}px`;
+        this.placeholder.style.width = `${this.draggedItem.offsetWidth}px`;
+        this.draggedItem.style.display = 'none';
+    }
+
+    handleDragOver(event: DragEvent) {
+        event.preventDefault();
+        const target = event.target as HTMLDivElement;
+        if (!target.classList.contains('tech-item') || !this.draggedItem || target === this.placeholder) return;
+
+        const rect = target.getBoundingClientRect();
+        const offset = event.clientX - rect.left;
+        const deadzone = rect.width * 0.2;
+        
+        // Only insert the placeholder if it's not already in the right place
+        if (offset < rect.width / 2 - deadzone / 2) {
+            if (this.placeholder.nextSibling !== target) {
+                this.insertBefore(this.placeholder, target);
+            }
+        } else if (offset > rect.width / 2 + deadzone / 2) {
+            if (this.placeholder !== target.nextSibling) {
+                this.insertBefore(this.placeholder, target.nextSibling);
+            }
+        }
+    }
+
+    handleDragEnd() {
+        if (this.draggedItem) {
+            this.draggedItem.style.display = 'block';
+            this.draggedItem.classList.remove('dragging');
+            this.insertBefore(this.draggedItem, this.placeholder);
+            this.draggedItem = null;
+            this.removeChild(this.placeholder);
+        }
+    }
+}
+
+customElements.define("tech-items", TechItems);
+
+
+</script>

@@ -2,11 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Intro from '../components/Intro.astro';
-import Projects from '../components/Projects.astro';
-import Career from '../components/Career.astro';
-import ThemePicker from '../components/ThemePicker.astro';
+import Projects from '../sections/Projects.astro';
+import Career from '../sections/Career.astro';
+import ThemePicker from '../sections/ThemePicker.astro';
 import Footer from '../components/Footer.astro'
-import Purposes from '../components/Purposes.astro';
+import Purposes from '../sections/Purposes.astro';
+import Technologies from '../sections/Technologies.astro';
 ---
 
 <Layout title="Porfolio de Fernando J. - Desarrollador Web">
@@ -15,6 +16,7 @@ import Purposes from '../components/Purposes.astro';
 		<Intro/>
 		<Career/>
 		<Projects/>
+		<Technologies/>
 		<Purposes/>
 		<ThemePicker/>
 	</main>

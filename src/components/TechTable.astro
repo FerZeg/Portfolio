@@ -1,0 +1,35 @@
+---
+import TechTableSection from './TechTableSection.astro';
+import tech from '../data/tech.json';
+---
+
+<div class="table-container">
+    <div class="table-row">
+        <TechTableSection title="Backend" class="table-section" data={tech.backend}/>
+        <TechTableSection title="BBDD" class="table-section" data={tech.bbdd}/>
+    </div>
+    <div class="table-row">
+        <TechTableSection title="Frontend" class="table-section" data={tech.frontend}/>
+        <TechTableSection title="Otros" class="table-section" data={tech.others}/>
+    </div>
+</div>
+<style scoped>
+    .table-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin: 1rem 0;
+        width: 100%;
+        user-select: none;
+    }
+    .table-row {
+        display: flex;
+        gap: 1rem;
+        width: 100%;
+        border-bottom: 1px solid #2e2e2e;
+        border-top: 1px solid #2e2e2e;
+    }
+    :global(.table-section) {
+        flex: 1;
+    }
+</style>

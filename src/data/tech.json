@@ -1,0 +1,22 @@
+{
+    "backend": [
+        "Node.js",
+        "Express",
+        "Laravel"
+    ],
+    "bbdd": [
+        "MySQL",
+        "MongoDB"
+    ],
+    "frontend": [
+        "HTML",
+        "JavaScript",
+        "React",
+        "Vue",
+        "Astro"
+    ],
+    "others": [
+        "Git"
+    ]
+
+}
