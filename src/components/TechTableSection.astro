@@ -39,6 +39,7 @@ const { class: className, title, data } = Astro.props;
         color: var(--bg);
         position: relative;
         cursor: grab;
+        transition: transform 0.02s;
     }
     .tech-item:active {
         cursor: grabbing;
@@ -62,6 +63,24 @@ const { class: className, title, data } = Astro.props;
 </style>
 
 <script>
+    function throttle(func : Function, limit : number) {
+        let lastFunc : number;
+        let lastRan : number;
+        return function(this: any, ...args : any) {
+            if (!lastRan) {
+                func.apply(this, args);
+                lastRan = Date.now();
+            } else {
+                clearTimeout(lastFunc);
+                lastFunc = setTimeout(() => {
+                    if ((Date.now() - lastRan) >= limit) {
+                        func.apply(this, args);
+                        lastRan = Date.now();
+                    }
+                }, limit - (Date.now() - lastRan));
+            }
+        };
+    }
 class TechItems extends HTMLElement {
     placeholder: HTMLDivElement;
     draggedItem: HTMLDivElement | null;
@@ -81,7 +100,7 @@ class TechItems extends HTMLElement {
 
             // Add touch event listeners
             item.addEventListener("touchstart", this.handleTouchStart.bind(this) as EventListener);
-            item.addEventListener("touchmove", this.handleTouchMove.bind(this) as EventListener);
+            item.addEventListener("touchmove", throttle(this.handleTouchMove.bind(this) as EventListener, 12) as EventListener);
             item.addEventListener("touchend", this.handleTouchEnd.bind(this) as EventListener);
         });
     }
@@ -145,17 +164,19 @@ class TechItems extends HTMLElement {
     }
 
     handleTouchMove(event: TouchEvent) {
-        event.preventDefault();
         const touch = event.touches[0];
         const target = document.elementFromPoint(touch.clientX, touch.clientY) as HTMLDivElement;
-        if (!target || !target.classList.contains('tech-item') || !this.draggedItem || target === this.placeholder) return;
 
+        if(!this.draggedItem) return;
         // Update the position of the dragged item using transforms
         const parentPosition = this.getBoundingClientRect();
         const draggedItemRect = this.draggedItem.getBoundingClientRect();
         const offsetX = touch.clientX - parentPosition.left - draggedItemRect.width / 2;
         const offsetY = touch.clientY - parentPosition.top - draggedItemRect.height / 2;
         this.draggedItem.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+
+
+        if (!target || !target.classList.contains('tech-item') || !this.draggedItem || target === this.placeholder || target.contains(this.draggedItem)) return;
 
         const rect = target.getBoundingClientRect();
         const offset = touch.clientX - rect.left;
@@ -183,6 +204,8 @@ class TechItems extends HTMLElement {
             this.removeChild(this.placeholder);
         }
     }
+
+    
 }
 
 
