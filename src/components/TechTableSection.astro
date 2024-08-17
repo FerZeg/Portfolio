@@ -29,6 +29,7 @@ const { class: className, title, data } = Astro.props;
         flex-wrap: wrap;
         width: 100%;
         padding: 20px 0;
+        position: relative;
     }
     .tech-item {
         font-size: 0.7rem;
@@ -56,6 +57,7 @@ const { class: className, title, data } = Astro.props;
     }
     :global(.dragging) {
         cursor: grabbing;
+        opacity: 0.5;
     }
 </style>
 
@@ -89,7 +91,10 @@ class TechItems extends HTMLElement {
         this.draggedItem.classList.add('dragging');
         this.placeholder.style.height = `${this.draggedItem.offsetHeight}px`;
         this.placeholder.style.width = `${this.draggedItem.offsetWidth}px`;
-        this.draggedItem.style.display = 'none';
+        setTimeout(() => {
+            if(!this.draggedItem) return;
+            this.draggedItem.style.display = 'none';
+        }, 0);
     }
 
     handleDragOver(event: DragEvent) {
@@ -124,20 +129,33 @@ class TechItems extends HTMLElement {
     }
 
     handleTouchStart(event: TouchEvent) {
+        event.preventDefault();
         const touch = event.touches[0];
         this.draggedItem = event.target as HTMLDivElement;
         this.draggedItem.classList.add('dragging');
         this.placeholder.style.height = `${this.draggedItem.offsetHeight}px`;
         this.placeholder.style.width = `${this.draggedItem.offsetWidth}px`;
-        this.draggedItem.style.display = 'none';
-        this.handleTouchMove(event);
+
+        const parentPosition = this.getBoundingClientRect();
+        const draggedItemRect = this.draggedItem.getBoundingClientRect();
+        const offsetX = touch.clientX - parentPosition.left - draggedItemRect.width / 2;
+        const offsetY = touch.clientY - parentPosition.top - draggedItemRect.height / 2;
+        this.draggedItem.style.position = 'absolute';
+        this.draggedItem.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
     }
 
     handleTouchMove(event: TouchEvent) {
         event.preventDefault();
         const touch = event.touches[0];
         const target = document.elementFromPoint(touch.clientX, touch.clientY) as HTMLDivElement;
-        if (!target.classList.contains('tech-item') || !this.draggedItem || target === this.placeholder) return;
+        if (!target || !target.classList.contains('tech-item') || !this.draggedItem || target === this.placeholder) return;
+
+        // Update the position of the dragged item using transforms
+        const parentPosition = this.getBoundingClientRect();
+        const draggedItemRect = this.draggedItem.getBoundingClientRect();
+        const offsetX = touch.clientX - parentPosition.left - draggedItemRect.width / 2;
+        const offsetY = touch.clientY - parentPosition.top - draggedItemRect.height / 2;
+        this.draggedItem.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
 
         const rect = target.getBoundingClientRect();
         const offset = touch.clientX - rect.left;
@@ -157,14 +175,16 @@ class TechItems extends HTMLElement {
 
     handleTouchEnd() {
         if (this.draggedItem) {
-            this.draggedItem.style.display = 'block';
+            this.draggedItem.style.position = ''; // Reset position style
             this.draggedItem.classList.remove('dragging');
+            this.draggedItem.style.transform = ''; // Reset transform style
             this.insertBefore(this.draggedItem, this.placeholder);
             this.draggedItem = null;
             this.removeChild(this.placeholder);
         }
     }
 }
+
 
 customElements.define("tech-items", TechItems);
 </script>
