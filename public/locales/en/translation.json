@@ -1,0 +1,71 @@
+{
+    "global": {
+        "title": "Portfolio of Fernando J. - Web Developer",
+        "description": "This is my portfolio website, here you can see my projects, technologies, purposes and more."
+    },
+    "studies": {
+        "title": "Career",
+        "curiosity": {
+            "time": "Previous",
+            "title": "Curiosity about programming",
+            "description": "Long before deciding for my future, I was curious about programming and I started to do small projects like some modding games, or creating a small websites."
+        },
+        "education": {
+            "time": "2022 - 2024",
+            "title": "Higher Education in Web Development",
+            "description": "Most recent official education, focused mostly on web development and related technologies."
+        },
+        "atlas": {
+            "time": "March 2024 - Present",
+            "title": "Working for Atlas Cloud S.L.",
+            "description": "After doing an intership at Atlas Cloud, I was able to start working for them as a full stack developer. I have primarily worked with Salesforce, Laravel, VueJS and SQL. "
+        }
+    },
+    "projects": {
+        "title": "Projects",
+        "actions": {
+            "view": "View",
+            "repository": "Repository"
+        },
+        "carnets": {
+            "title": "Carnets",
+            "description": "Carnets is a web application that allows users to create presentation cards for their Twitch channels.",
+            "tech": {
+                "react": "React",
+                "node": "Node",
+                "mongo": "MongoDB"
+            }
+        }
+    },
+    "technologies": {
+        "title": "Technologies",
+        "sections": {
+            "others": "Others",
+            "databases": "DBs"
+        }
+    },
+    "purposes": {
+        "title": "Purposes",
+        "description": "One of my hobbies is to learn languages, it's very useful as well as very enjoyable.",
+        "states": {
+            "current": "Current",
+            "mid_term": "Mid term",
+            "long_term": "Long term"
+        }
+    },
+    "about_me": {
+        "title": "About Me",
+        "greeting": "Hello, I am Fernando",
+        "position": "Full Stack Developer",
+        "description": "In constant learning and evolution",
+        "age": "Age",
+        "location": "From Segovia, Spain"
+    },
+    "contact": {
+        "title": "Contact"
+    },
+    "themes": {
+        "title": "Themes",
+        "description": "Choose the theme you want to see in the website."
+    }
+}

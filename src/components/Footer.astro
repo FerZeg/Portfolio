@@ -1,8 +1,11 @@
+---
+import { LanguageSelector } from "astro-i18next/components";
+---
+
 <footer>
-    <p class="text-gradient">© 2024 Fernando J. Estrada</p>
+    <p class="text-gradient">2024 Fernando J. Estrada</p>
     <div>
-        <a href="#about">Sobre mí</a>
-        <a href="#contact">Contacto</a>
+        <LanguageSelector class="language-selector" />
     </div>
 </footer>
 
@@ -31,5 +34,13 @@
     }
     p {
         text-wrap: wrap;
+    }
+    .language-selector {
+        padding: 3px;
+        border-radius: 5px;
+        background-color: var(--bg);
+        color: var(--text-color);
+        outline: none;
+        box-shadow: rgba(var(--shadow-color)) 1px 1px 3px;
     }
 </style>

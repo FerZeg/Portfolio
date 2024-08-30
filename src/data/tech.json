@@ -2,7 +2,8 @@
     "backend": [
         "Node.js",
         "Express",
-        "Laravel"
+        "Laravel",
+        "Apex"
     ],
     "bbdd": [
         "MySQL",
@@ -13,10 +14,13 @@
         "JavaScript",
         "React",
         "Vue",
-        "Astro"
+        "Astro",
+        "LWC",
+        "CSS"
     ],
     "others": [
-        "Git"
+        "Git",
+        "Docker"
     ]
 
 }

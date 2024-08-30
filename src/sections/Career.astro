@@ -2,10 +2,11 @@
 import Title from '../components/Title.astro'
 import StudiesIcon from '../components/Icons/StudiesIcon.astro';
 import TimeLine from '../components/TimeLine.astro';
+import {t} from 'i18next';
 ---
 
 <section id="studies" class="scroll">
-    <Title text="Carrera">
+    <Title text={t('studies.title')}>
         <StudiesIcon width='45px' height='45px' />
     </Title>
     <TimeLine />

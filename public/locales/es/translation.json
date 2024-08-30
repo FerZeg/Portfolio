@@ -1,0 +1,71 @@
+{
+    "global": {
+        "title": "Portafolio de Fernando J. - Desarrollador Web",
+        "description": "Este es mi portafolio web, aquí puedes ver mis proyectos, tecnologías, metas y más."
+    },
+    "studies": {
+        "title": "Carrera",
+        "curiosity": {
+            "time": "Antes",
+            "title": "Curiosidad por la programación",
+            "description": "Mucho antes de decidir por mi futuro, me interesé en la programación y me dediqué a hacer pequeños proyectos, como plugins para juegos en Java, o pequeñas web."
+        },
+        "education": {
+            "time": "2022 - 2024",
+            "title": "Grado Superior en Desarrollo de Aplicaciones Web: IES Maria Moliner",
+            "description": "Estudios oficiales más recientes, enfocados en el desarrollo web."
+        },
+        "atlas": {
+            "time": "Marzo 2024 - Actualidad",
+            "title": "Desarrollador en Atlas Cloud S.L.",
+            "description": "Después de hacer las prácticas en Atlas Cloud, pude comenzar a trabajar con ellos como desarrollador Full Stack. Principalmente trabajé con Salesforce, Laravel, VueJS y SQL. "
+        }
+    },
+    "projects": {
+        "title": "Proyectos",
+        "actions": {
+            "view": "Ver",
+            "repository": "Repositorio"
+        },
+        "carnets": {
+            "title": "Carnets",
+            "description": "Carnets es una aplicación web que permite a los usuarios crear tarjetas de presentación para sus canales de Twitch.",
+            "tech": {
+                "react": "React",
+                "node": "Node",
+                "mongo": "MongoDB"
+            }
+        }
+    },
+    "technologies": {
+        "title": "Tecnologías",
+        "sections": {
+            "others": "Otros",
+            "databases": "BBDD"
+        }
+    },
+    "purposes": {
+        "title": "Metas",
+        "description": "Uno de mis pasatiempos favoritos es aprender idiomas, creo que es muy útil y entretenido.",
+        "states": {
+            "current": "Actual",
+            "mid_term": "Medio plazo",
+            "long_term": "Largo plazo"
+        }
+    },
+    "about_me": {
+        "title": "Sobre mí",
+        "greeting": "Hola, soy Fernando",
+        "position": "Desarrollador Full Stack",
+        "description": "En constante aprendizaje y evolución.",
+        "age": "Edad",
+        "location": "Desde Segovia, España."
+    },
+    "contact": {
+        "title": "Contacto"
+    },
+    "themes": {
+        "title": "Temas",
+        "description": "Elige un tema para el porfolio."
+    }
+}

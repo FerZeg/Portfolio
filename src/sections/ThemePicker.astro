@@ -2,12 +2,13 @@
 import Title from '../components/Title.astro'
 import ColorsIcon from '../components/Icons/ColorsIcon.astro';
 import { ThemeSelector } from '../components/React/ThemeSelector';
+import {t} from 'i18next';
 ---
 
 <section>
-    <Title text="Temas">
+    <Title text={t('themes.title')}>
         <ColorsIcon width='52px' height='52px' />
     </Title>
-    <p class="text-gradient">Elige un tema para el porfolio.</p>
+    <p class="text-gradient">{t('themes.description')}</p>
     <ThemeSelector client:idle/>
 </section>

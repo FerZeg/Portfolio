@@ -1,5 +1,6 @@
 ---
 import MenuIcon from './Icons/MenuIcon.astro';
+import { t } from 'i18next';
 ---
 
 <header>
@@ -11,12 +12,12 @@ import MenuIcon from './Icons/MenuIcon.astro';
     </div>
     <nav>
         <ul>
-            <li><a href="#studies">Estudios</a></li>
-            <li><a href="#projects">Proyectos</a></li>
-            <li><a href="#tech">Tecnologías</a></li>
-            <li><a href="#purposes">Metas</a></li>
-            <li><a href="#about">Sobre mí</a></li>
-            <li><a href="#contact">Contacto</a></li>
+            <li><a href="#studies">{t('studies.title')}</a></li>
+            <li><a href="#projects">{t('projects.title')}</a></li>
+            <li><a href="#tech">{t('technologies.title')}</a></li>
+            <li><a href="#purposes">{t('purposes.title')}</a></li>
+            <li><a href="#about">{t('about_me.title')}</a></li>
+            <li><a href="#contact">{t('contact.title')}</a></li>
         </ul>
     </nav>
 </header>

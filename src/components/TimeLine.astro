@@ -1,14 +1,15 @@
 ---
 import Carrera from '../data/carrera.json'
+import { t } from 'i18next';
 ---
 
 <div class="studies-time-line">
     <div>
-        {Carrera.map(({ date, title, description }) => (
+        {Carrera.map((item: string, index: number) => (
             <div>
-                <p class="date">{date}</p>
-                <p class="text-gradient">{title}</p>
-                <p class="description">{description}</p>
+                <p class="date">{t(`studies.${item}.time`)}</p>
+                <p class="text-gradient">{t(`studies.${item}.title`)}</p>
+                <p class="description">{t(`studies.${item}.description`)}</p>
             </div>
         ))}
     </div>

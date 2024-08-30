@@ -1,35 +1,42 @@
 ---
 interface Props {
-    title: string,
-    description: string,
-    image: string,
-    link: string,
-    repo: string,
+    title: string;
+    description: string;
+    image: string;
+    link: string;
+    repo: string;
 }
-
+import { t } from 'i18next';
 const { title, description, image, repo, link } = Astro.props;
 ---
 
-<div class="project-card">
-      <div class="project-card__image">
-          <img src={image} alt={title} />
-      </div>
-      <div class="project-card__content">
-          <h3 class="text-gradient">{title}</h3>
-          <p>{description}</p>
-          <div class="project-card__tech">
-              <slot/>
-          </div>
-          <div class="project-card__links">
-            <a class="text-gradient" href={link} target="_blank">Ver</a>
-            <a class="text-gradient" href={repo} target="_blank">Repositorio</a>
-          </div>
-      </div>
-</div>
+<project-card class="project-card">
+  <div class="project-card__image">
+    <img src={image} alt={title} />
+  </div>
+  <div class="project-card__content">
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <div class="project-card__tech">
+      <slot/>
+    </div>
+    <div class="project-card__links">
+      <a href={link} target="_blank" rel="noopener noreferrer">{t('projects.actions.view')}</a>
+      <a href={repo} target="_blank" rel="noopener noreferrer">{t('projects.actions.repository')}</a>
+    </div>
+  </div>
+</project-card>
 
 <style>
+  project-card {
+    --rotate-x: 0;
+    --rotate-y: 0;
+    --rotate-angle: 0deg;
+    perspective: 1200px;
+    display: block;
+  }
   .project-card {
-    padding: 10px;
+    padding: 15px;
     margin: 2rem 0;
     display: flex;
     flex-direction: column;
@@ -39,53 +46,131 @@ const { title, description, image, repo, link } = Astro.props;
     max-width: 400px;
     border-radius: 10px;
     box-shadow: rgba(var(--shadow-color)) 0 0 10px;
-    overflow: hidden;
-    transition: all 0.3s ease-in-out;
+    transform-style: preserve-3d;
+    transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y));
   }
+
   .project-card__image {
     width: 100%;
     height: 250px;
     overflow: hidden;
     transition: all 0.3s ease-in-out;
+    transform: translateZ(2vmin);
   }
+
   .project-card__image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; 
     object-position: center;
     transition: all 0.3s ease-in-out;
   }
-  .project-card:hover {
-    transform: scale(1.05);
+
+  .project-card__content {
+    padding: 1rem;
+    text-align: center;
+    transform-style: preserve-3d;
+    transform: translateZ(20px);
   }
+
+  .project-card__content > h3 {
+    transform: translateZ(40px);
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+  .project-card__content > p {
+    transform: translateZ(30px);
+    margin-bottom: 1rem;
+  }
+
   .project-card:hover .project-card__image img {
-    transform: scale(2);
+    transform: scale(1.1);
     filter: hue-rotate(180deg);
   }
+
   .project-card__tech {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 1rem;
     gap: 1rem;
     flex-wrap: wrap;
-  }
-  .project-card__content {
-    padding: 1rem;
-    text-align: center;
-  }
-  a {
-    display: inline-block;
-    border: 1px solid transparent;
-    transition: border 0.3s ease-in-out;
-  }
-  a:hover {
-    border-bottom: 1px solid rgb(var(--accent));
-  }
+    transform: translateZ(3vmin);
+    position: relative;
+    transform-style: preserve-3d;
+    width: fit-content;
+    margin: 1rem auto;
+}
+
   .project-card__links {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    transform-style: preserve-3d;
+    transform: translateZ(2vmin);
+  }
+
+  .project-card__links a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    transition: all 0.3s ease-in-out;
+    background-color: rgba(var(--accent), 0.1);
+    color: rgb(var(--accent));
+    text-decoration: none;
+    border-radius: 5px;
+    transform: translateZ(5px);
+    filter: drop-shadow(0px 0px 10px rgba(var(--accent), 0.5));
+  }
+
+  .project-card__links a:hover {
+    background-color: rgb(var(--accent));
+    color: white;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-card, .project-card__image, .project-card__image img, .project-card__links a {
+      transition: none;
+    }
+    .project-card:hover, .project-card:hover .project-card__image img {
+      transform: none;
+    }
+    .project-card__content, .project-card__content > h3, .project-card__content > p, .project-card__tech, .project-card__links {
+      transform: none;
+    }
   }
 </style>
+
+<script>
+  class ProjectCard extends HTMLElement {
+    constructor() {
+      super();
+    }
+    connectedCallback() {
+      this.addEventListener('mousemove', (e) => {
+        const rect = this.getBoundingClientRect();
+        const center = { x: rect.width / 2, y: rect.height / 2 };
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+        const distanceX = mouseX - center.x;
+        const distanceY = mouseY - center.y;
+
+        this.style.setProperty('--rotate-x', `${-distanceY / 10 }deg`);
+        this.style.setProperty('--rotate-y', `${-distanceX / 10}deg`);
+        this.style.boxShadow = `rgba(var(--shadow-color)) ${distanceX / 15}px ${distanceY / 15}px 10px`;
+      });
+
+
+      this.addEventListener('mouseleave', () => {
+        this.style.setProperty('--rotate-x', '0');
+        this.style.setProperty('--rotate-y', '0');
+        this.style.setProperty('--rotate-angle', '0deg');
+        this.style.boxShadow = 'rgba(var(--shadow-color)) 0 0 10px';
+      });
+    }
+  }
+
+
+  customElements.define('project-card', ProjectCard);
+</script>

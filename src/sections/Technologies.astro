@@ -2,10 +2,11 @@
 import Title from '../components/Title.astro'
 import TechIcon from '../components/Icons/TechIcon.astro';
 import TechTable from '../components/TechTable.astro';
+import {t} from 'i18next';
 ---
 
 <section id="tech" class="scroll">
-    <Title text="Tecnologías">
+    <Title text={t('technologies.title')}>
         <TechIcon width='45px' height='45px' />
     </Title>
     <TechTable />

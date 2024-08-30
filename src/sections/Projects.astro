@@ -5,15 +5,16 @@ import ReactIcon from '../components/Icons/ReactIcon.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import NodeIcon from '../components/Icons/NodeIcon.astro';
 import MongoIcon from '../components/Icons/MongoIcon.astro';
+import {t} from 'i18next';
 ---
 
 <section id="projects" class="scroll">
-    <Title text="Proyectos">
+    <Title text={t('projects.title')}>
         <ProjectsIcon width='50px' height='50px' />
     </Title>
     <ProjectCard 
-        title="Carnets de Twitch"
-        description="Carnets de Twitch es una aplicación web que permite a los usuarios crear tarjetas de presentación para sus canales de Twitch."
+        title={t('projects.carnets.title')}
+        description={t('projects.carnets.description')}
         image="/img/carnets.webp"
         link="https://carnets.fernandoestrada.dev"
         repo="https://github.com/FerZeg"
