@@ -10,12 +10,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.2",
+    "@astrojs/check": "^0.9.3",
     "@astrojs/react": "^3.6.2",
-    "@fontsource/onest": "5.0.4",
-    "@types/react": "^18.3.3",
+    "@fontsource/onest": "5.0.5",
+    "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
-    "astro": "^4.13.3",
+    "astro": "^4.15.1",
     "astro-i18next": "1.0.0-beta.21",
     "react": "18.3.1",
     "react-dom": "^18.3.1",
