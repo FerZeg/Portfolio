@@ -1,0 +1,355 @@
+---
+import '@fontsource-variable/source-serif-4';
+import '@fontsource/reenie-beanie';
+import { cv, links, certifications, tech, project, atlasStart, tenure, type Lang } from '../cv';
+
+// English lives at /, Spanish at /es.
+export function getStaticPaths() {
+	return [{ params: { lang: undefined } }, { params: { lang: 'es' } }];
+}
+
+const lang: Lang = Astro.params.lang === 'es' ? 'es' : 'en';
+const t = cv[lang];
+const otherLangHref = t.otherLang.code === 'es' ? '/es' : '/';
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{t.pageTitle}</title>
+		<meta name="description" content={t.description} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	</head>
+	<body>
+		<header class="row">
+			<div class="text">
+				<h1>{t.name}</h1>
+				<p class="role">{t.role}</p>
+				<p>{t.location}</p>
+				<p class="other-lang">
+					<a href={otherLangHref} lang={t.otherLang.code} hreflang={t.otherLang.code}>{t.otherLang.label}</a>
+				</p>
+			</div>
+		</header>
+
+		<main>
+			<section class="work">
+				<h2 class="row"><span class="text">{t.headings.work}</span></h2>
+				<div class="row">
+					<div class="margin">
+						<p class="note running"><span data-since={atlasStart}>{tenure(atlasStart, lang)}</span></p>
+						<p class="note tilt-b">{t.job.period}</p>
+					</div>
+					<div class="text">
+						<h3 class="company">{t.job.company}</h3>
+						<p class="job-title">{t.job.title}</p>
+						<p class="summary">{t.job.summary}</p>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h2 class="row"><span class="text">{t.headings.education}</span></h2>
+				<div class="row">
+					<div class="margin">
+						<p class="note tilt-c">{t.education.period}</p>
+					</div>
+					<div class="text">
+						<h3>{t.education.school}</h3>
+						<p>{t.education.title}</p>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h2 class="row"><span class="text">{t.headings.certifications}</span></h2>
+				<ul class="certs">
+					{certifications.map((cert) => (
+						<li class="row">
+							<div class="margin">
+								{cert.year && <p class="note">{cert.year}</p>}
+							</div>
+							<div class="text">
+								{cert.url ? <a href={cert.url}>{cert.name}</a> : <p>{cert.name}</p>}
+								<p>{cert.issuer}{cert.credentialId && `, ID ${cert.credentialId}`}</p>
+							</div>
+						</li>
+					))}
+				</ul>
+				<p class="row after-list">
+					<span class="text"><a href={links.linkedin}>{t.certificationsLink}</a></span>
+				</p>
+			</section>
+
+			<section>
+				<h2 class="row"><span class="text">{t.headings.projects}</span></h2>
+				<div class="row">
+					<div class="text">
+						<h3><a href={project.url}>{project.name}</a></h3>
+						<p>{t.projectSummary}</p>
+						<ul class="inline">
+							{project.stack.map((item) => <li>{item}</li>)}
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h2 class="row"><span class="text">{t.headings.tech}</span></h2>
+				<div class="row">
+					<ul class="inline text">
+						{tech.map((item) => <li>{item}</li>)}
+					</ul>
+				</div>
+			</section>
+		</main>
+
+		<footer>
+			<h2 class="row"><span class="text">{t.headings.contact}</span></h2>
+			<div class="row">
+				<ul class="contact text">
+					<li><a href={links.linkedin}>LinkedIn</a></li>
+					<li><a href={links.github}>GitHub</a></li>
+					<li><a href={`mailto:${links.email}`}>{links.email}</a></li>
+				</ul>
+			</div>
+		</footer>
+
+		<script>
+			import '../tenure';
+		</script>
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--ink: #1f3fbf;
+		--margin: clamp(11rem, 25vw, 20rem);
+		--gutter: 2rem;
+		--hand: 'Reenie Beanie', 'Segoe Print', cursive;
+		color-scheme: light;
+	}
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	html {
+		-webkit-text-size-adjust: 100%;
+	}
+
+	body {
+		margin: 0;
+		padding: clamp(2.5rem, 7vw, 5.5rem) 3rem 5rem;
+		background: #ffffff;
+		color: #000000;
+		font-family: 'Source Serif 4 Variable', Georgia, 'Times New Roman', serif;
+		font-size: 1.1875rem;
+		line-height: 1.5;
+		overflow-wrap: break-word;
+	}
+
+	h1,
+	h2,
+	h3,
+	p,
+	ul {
+		margin: 0;
+		padding: 0;
+	}
+
+	ul {
+		list-style: none;
+	}
+
+	/* The sheet: an empty margin for the pen, then the printed column. */
+	.row {
+		display: grid;
+		grid-template-columns: var(--margin) minmax(0, 36rem);
+		column-gap: var(--gutter);
+	}
+
+	.text {
+		grid-column: 2;
+		min-width: 0;
+	}
+
+	.margin {
+		grid-column: 1;
+		text-align: right;
+	}
+
+	h1 {
+		font-size: clamp(2.5rem, 7vw, 3.75rem);
+		font-weight: 600;
+		line-height: 1.05;
+		letter-spacing: -0.012em;
+	}
+
+	.role {
+		margin-top: 0.75rem;
+		font-size: 1.375rem;
+	}
+
+	.other-lang {
+		margin-top: 1rem;
+	}
+
+	section,
+	footer {
+		margin-top: 3.25rem;
+	}
+
+	h2 {
+		margin-bottom: 0.75rem;
+		font-size: 1.5rem;
+		font-weight: 400;
+		line-height: 1.25;
+	}
+
+	h3 {
+		font-size: inherit;
+		font-weight: 650;
+	}
+
+	/* The one section allowed to be loud. */
+	.work {
+		margin-top: 4.5rem;
+		margin-bottom: 4.5rem;
+	}
+
+	.company {
+		font-size: clamp(2rem, 4.5vw, 2.5rem);
+		line-height: 1.15;
+		letter-spacing: -0.008em;
+	}
+
+	.job-title {
+		margin-top: 0.375rem;
+		font-size: 1.375rem;
+	}
+
+	.summary {
+		margin-top: 1rem;
+		font-size: 1.25rem;
+		line-height: 1.5;
+	}
+
+	/* Handwriting: margin notes only. */
+	.note {
+		color: var(--ink);
+		font-family: var(--hand);
+		font-size: 2rem;
+		line-height: 1;
+		-webkit-text-stroke: 0.3px var(--ink);
+		transform: rotate(-0.6deg);
+		transform-origin: 100% 50%;
+		text-wrap: balance;
+	}
+
+	.tilt-b {
+		margin-top: 0.875rem;
+		transform: rotate(0.5deg);
+	}
+
+	.tilt-c {
+		transform: rotate(0.8deg);
+	}
+
+	.running {
+		font-size: clamp(2.75rem, 4vw, 3.25rem);
+		line-height: 0.95;
+		-webkit-text-stroke-width: 0.4px;
+		transform: rotate(-1deg);
+	}
+
+	.certs li + li {
+		margin-top: 1rem;
+	}
+
+	.certs li:nth-child(even) .note {
+		transform: rotate(0.7deg);
+	}
+
+	.after-list {
+		margin-top: 1rem;
+	}
+
+	.inline li {
+		display: inline;
+	}
+
+	.inline li:not(:last-child)::after {
+		content: ', ';
+	}
+
+	.contact li + li {
+		margin-top: 0.25rem;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.18em;
+	}
+
+	a:hover {
+		text-decoration-thickness: 2px;
+	}
+
+	a:focus-visible {
+		outline: 3px solid var(--ink);
+		outline-offset: 3px;
+		border-radius: 1px;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		a {
+			transition: text-decoration-thickness 120ms linear;
+		}
+	}
+
+	/* Narrow sheet: the notes move above their entry. */
+	@media (max-width: 46rem) {
+		body {
+			padding-inline: 1.25rem;
+			font-size: 1.125rem;
+		}
+
+		.row {
+			display: block;
+		}
+
+		.margin {
+			margin-bottom: 0.375rem;
+			text-align: left;
+		}
+
+		.note {
+			transform-origin: 0 50%;
+		}
+
+		.margin .tilt-b {
+			margin-top: 0.25rem;
+		}
+
+		.work .margin {
+			margin-bottom: 0.625rem;
+		}
+
+		.contact li + li {
+			margin-top: 0.625rem;
+		}
+	}
+
+	@media print {
+		@page { margin: 1.5cm; }
+		body { padding: 0; font-size: 11pt; }
+		section, footer, .work { margin-block: 1.25rem 0; break-inside: avoid; }
+	}
+</style>
