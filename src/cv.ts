@@ -54,7 +54,7 @@ export const certifications: Certification[] = [
 	},
 ];
 
-export const tech = ['Salesforce', 'Apex', 'LWC', 'Laravel', 'Vue', 'React', 'Astro', 'Node.js', 'Express', 'MySQL', 'MongoDB', 'Redis', 'Git', 'Docker', 'Claude'];
+export const tech = ['Laravel', 'Vue', 'React', 'Astro', 'Node.js', 'Express', 'MySQL', 'MongoDB', 'Redis', 'Git', 'Docker', 'Claude', 'Salesforce', 'Apex', 'LWC'];
 
 export const project = {
 	name: 'Viajes',
@@ -80,9 +80,8 @@ export const cv = {
 		},
 		job: {
 			company: 'Atlas Cloud S.L.',
-			title: 'Full stack developer',
 			period: 'March 2024 to present',
-			summary: 'I joined Atlas Cloud as an intern and stayed on as a full stack developer. I work mainly with Salesforce, Laravel, Vue and SQL.',
+			summary: 'I joined Atlas Cloud as an intern and stayed on as a full stack developer. I work mainly with Laravel, Vue, SQL and Salesforce.',
 		},
 		education: {
 			school: 'IES María Moliner',
@@ -91,6 +90,7 @@ export const cv = {
 		},
 		projectSummary: 'A web app for planning group trips: itinerary, packing, shared expenses and photos. People use it on real trips.',
 		certificationsLink: 'All certifications on LinkedIn',
+		builtWith: 'Built with',
 	},
 	es: {
 		pageTitle: 'Fernando Estrada, desarrollador full stack',
@@ -109,9 +109,8 @@ export const cv = {
 		},
 		job: {
 			company: 'Atlas Cloud S.L.',
-			title: 'Desarrollador full stack',
 			period: 'Marzo de 2024 a la actualidad',
-			summary: 'Entré en Atlas Cloud en prácticas y me quedé como desarrollador full stack. Trabajo sobre todo con Salesforce, Laravel, Vue y SQL.',
+			summary: 'Entré en Atlas Cloud en prácticas y me quedé como desarrollador full stack. Trabajo sobre todo con Laravel, Vue, SQL y Salesforce.',
 		},
 		education: {
 			school: 'IES María Moliner',
@@ -120,5 +119,6 @@ export const cv = {
 		},
 		projectSummary: 'Una aplicación web para planificar viajes en grupo: itinerario, maleta, gastos compartidos y fotos. Se usa en viajes reales.',
 		certificationsLink: 'Todas las certificaciones en LinkedIn',
+		builtWith: 'Hecho con',
 	},
 };

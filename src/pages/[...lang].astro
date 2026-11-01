@@ -1,6 +1,4 @@
 ---
-import '@fontsource-variable/source-serif-4';
-import '@fontsource/reenie-beanie';
 import { cv, links, certifications, tech, project, atlasStart, tenure, type Lang } from '../cv';
 
 // English lives at /, Spanish at /es.
@@ -23,99 +21,86 @@ const otherLangHref = t.otherLang.code === 'es' ? '/es' : '/';
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	</head>
 	<body>
-		<header class="row">
-			<div class="text">
+		<div class="sheet">
+			<header>
 				<h1>{t.name}</h1>
-				<p class="role">{t.role}</p>
-				<p>{t.location}</p>
-				<p class="other-lang">
-					<a href={otherLangHref} lang={t.otherLang.code} hreflang={t.otherLang.code}>{t.otherLang.label}</a>
-				</p>
-			</div>
-		</header>
-
-		<main>
-			<section class="work">
-				<h2 class="row"><span class="text">{t.headings.work}</span></h2>
-				<div class="row">
-					<div class="margin">
-						<p class="note running"><span data-since={atlasStart}>{tenure(atlasStart, lang)}</span></p>
-						<p class="note tilt-b">{t.job.period}</p>
-					</div>
-					<div class="text">
-						<h3 class="company">{t.job.company}</h3>
-						<p class="job-title">{t.job.title}</p>
-						<p class="summary">{t.job.summary}</p>
-					</div>
-				</div>
-			</section>
-
-			<section>
-				<h2 class="row"><span class="text">{t.headings.education}</span></h2>
-				<div class="row">
-					<div class="margin">
-						<p class="note tilt-c">{t.education.period}</p>
-					</div>
-					<div class="text">
-						<h3>{t.education.school}</h3>
-						<p>{t.education.title}</p>
-					</div>
-				</div>
-			</section>
-
-			<section>
-				<h2 class="row"><span class="text">{t.headings.certifications}</span></h2>
-				<ul class="certs">
-					{certifications.map((cert) => (
-						<li class="row">
-							<div class="margin">
-								{cert.year && <p class="note">{cert.year}</p>}
-							</div>
-							<div class="text">
-								{cert.url ? <a href={cert.url}>{cert.name}</a> : <p>{cert.name}</p>}
-								<p>{cert.issuer}{cert.credentialId && `, ID ${cert.credentialId}`}</p>
-							</div>
-						</li>
-					))}
-				</ul>
-				<p class="row after-list">
-					<span class="text"><a href={links.linkedin}>{t.certificationsLink}</a></span>
-				</p>
-			</section>
-
-			<section>
-				<h2 class="row"><span class="text">{t.headings.projects}</span></h2>
-				<div class="row">
-					<div class="text">
-						<h3><a href={project.url}>{project.name}</a></h3>
-						<p>{t.projectSummary}</p>
-						<ul class="inline">
-							{project.stack.map((item) => <li>{item}</li>)}
-						</ul>
-					</div>
-				</div>
-			</section>
-
-			<section>
-				<h2 class="row"><span class="text">{t.headings.tech}</span></h2>
-				<div class="row">
-					<ul class="inline text">
-						{tech.map((item) => <li>{item}</li>)}
+				<div class="what">
+					<p>{t.role}</p>
+					<p class="quiet">{t.location}</p>
+					<ul class="inline" aria-label={t.headings.contact}>
+						<li><a href={`mailto:${links.email}`}>{links.email}</a></li>
+						<li><a href={links.linkedin}>LinkedIn</a></li>
+						<li><a href={links.github}>GitHub</a></li>
 					</ul>
 				</div>
-			</section>
-		</main>
+				<p class="lang quiet">
+					<a href={otherLangHref} lang={t.otherLang.code} hreflang={t.otherLang.code}>{t.otherLang.label}</a>
+				</p>
+			</header>
 
-		<footer>
-			<h2 class="row"><span class="text">{t.headings.contact}</span></h2>
-			<div class="row">
-				<ul class="contact text">
-					<li><a href={links.linkedin}>LinkedIn</a></li>
-					<li><a href={links.github}>GitHub</a></li>
-					<li><a href={`mailto:${links.email}`}>{links.email}</a></li>
-				</ul>
-			</div>
-		</footer>
+			<main>
+				<section>
+					<h2>{t.headings.work}</h2>
+					<div class="row">
+						<p class="quiet">{t.job.period}<br /><span data-since={atlasStart}>{tenure(atlasStart, lang)}</span></p>
+						<div class="what">
+							<h3>{t.job.company}</h3>
+							<p>{t.job.summary}</p>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h2>{t.headings.projects}</h2>
+					<div class="row">
+						<div class="what">
+							<h3><a href={project.url}>{project.name}</a></h3>
+							<p class="quiet">{t.projectSummary}</p>
+							<ul class="inline quiet" aria-label={t.builtWith}>
+								{project.stack.map((item) => <li>{item}</li>)}
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h2>{t.headings.certifications}</h2>
+					<ul>
+						{certifications.map((cert) => (
+							<li class="row">
+								<p class="quiet">{cert.year}</p>
+								<p class="what">
+									{cert.url ? <a href={cert.url}>{cert.name}</a> : cert.name}<span class="quiet">, {cert.issuer}{cert.credentialId && `, ID ${cert.credentialId}`}</span>
+								</p>
+							</li>
+						))}
+						<li class="row">
+							<p class="what"><a href={links.linkedin}>{t.certificationsLink}</a></p>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>{t.headings.education}</h2>
+					<div class="row">
+						<p class="quiet">{t.education.period}</p>
+						<div class="what">
+							<h3>{t.education.school}</h3>
+							<p class="quiet">{t.education.title}</p>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h2>{t.headings.tech}</h2>
+					<div class="row">
+						<ul class="inline what">
+							{tech.map((item) => <li>{item}</li>)}
+						</ul>
+					</div>
+				</section>
+			</main>
+		</div>
 
 		<script>
 			import '../tenure';
@@ -124,11 +109,13 @@ const otherLangHref = t.otherLang.code === 'es' ? '/es' : '/';
 </html>
 
 <style is:global>
+	/* The register: one size, one leading, two columns, two inks. */
 	:root {
-		--ink: #1f3fbf;
-		--margin: clamp(11rem, 25vw, 20rem);
-		--gutter: 2rem;
-		--hand: 'Reenie Beanie', 'Segoe Print', cursive;
+		--ink: #000;
+		--quiet: #6b6b6b; /* 5.3:1 on white */
+		--line: 1.5rem;
+		--label: 11rem;
+		--gutter: 1rem;
 		color-scheme: light;
 	}
 
@@ -140,16 +127,17 @@ const otherLangHref = t.otherLang.code === 'es' ? '/es' : '/';
 
 	html {
 		-webkit-text-size-adjust: 100%;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
 	}
 
 	body {
 		margin: 0;
-		padding: clamp(2.5rem, 7vw, 5.5rem) 3rem 5rem;
-		background: #ffffff;
-		color: #000000;
-		font-family: 'Source Serif 4 Variable', Georgia, 'Times New Roman', serif;
-		font-size: 1.1875rem;
-		line-height: 1.5;
+		background: #fff;
+		color: var(--ink);
+		font: 400 1rem/var(--line) 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif;
+		font-variant-numeric: tabular-nums;
+		font-synthesis: none;
 		overflow-wrap: break-word;
 	}
 
@@ -160,123 +148,53 @@ const otherLangHref = t.otherLang.code === 'es' ? '/es' : '/';
 	ul {
 		margin: 0;
 		padding: 0;
+		font: inherit;
 	}
 
 	ul {
 		list-style: none;
 	}
 
-	/* The sheet: an empty margin for the pen, then the printed column. */
-	.row {
+	p,
+	li {
+		text-wrap: pretty;
+	}
+
+	.sheet {
+		max-width: 46rem;
+		margin-inline: auto;
+		padding: calc(var(--line) * 3) 1.5rem;
+	}
+
+	/* Every line on the page hangs from this grid. */
+	.row,
+	header {
 		display: grid;
-		grid-template-columns: var(--margin) minmax(0, 36rem);
+		grid-template-columns: var(--label) minmax(0, 1fr);
 		column-gap: var(--gutter);
 	}
 
-	.text {
+	.what {
 		grid-column: 2;
 		min-width: 0;
 	}
 
-	.margin {
+	.quiet {
+		color: var(--quiet);
+	}
+
+	header h1 {
 		grid-column: 1;
-		text-align: right;
+		grid-row: 1;
 	}
 
-	h1 {
-		font-size: clamp(2.5rem, 7vw, 3.75rem);
-		font-weight: 600;
-		line-height: 1.05;
-		letter-spacing: -0.012em;
+	header .what {
+		grid-row: 1 / span 3;
 	}
 
-	.role {
-		margin-top: 0.75rem;
-		font-size: 1.375rem;
-	}
-
-	.other-lang {
-		margin-top: 1rem;
-	}
-
-	section,
-	footer {
-		margin-top: 3.25rem;
-	}
-
-	h2 {
-		margin-bottom: 0.75rem;
-		font-size: 1.5rem;
-		font-weight: 400;
-		line-height: 1.25;
-	}
-
-	h3 {
-		font-size: inherit;
-		font-weight: 650;
-	}
-
-	/* The one section allowed to be loud. */
-	.work {
-		margin-top: 4.5rem;
-		margin-bottom: 4.5rem;
-	}
-
-	.company {
-		font-size: clamp(2rem, 4.5vw, 2.5rem);
-		line-height: 1.15;
-		letter-spacing: -0.008em;
-	}
-
-	.job-title {
-		margin-top: 0.375rem;
-		font-size: 1.375rem;
-	}
-
-	.summary {
-		margin-top: 1rem;
-		font-size: 1.25rem;
-		line-height: 1.5;
-	}
-
-	/* Handwriting: margin notes only. */
-	.note {
-		color: var(--ink);
-		font-family: var(--hand);
-		font-size: 2rem;
-		line-height: 1;
-		-webkit-text-stroke: 0.3px var(--ink);
-		transform: rotate(-0.6deg);
-		transform-origin: 100% 50%;
-		text-wrap: balance;
-	}
-
-	.tilt-b {
-		margin-top: 0.875rem;
-		transform: rotate(0.5deg);
-	}
-
-	.tilt-c {
-		transform: rotate(0.8deg);
-	}
-
-	.running {
-		font-size: clamp(2.75rem, 4vw, 3.25rem);
-		line-height: 0.95;
-		-webkit-text-stroke-width: 0.4px;
-		transform: rotate(-1deg);
-	}
-
-	.certs li + li {
-		margin-top: 1rem;
-	}
-
-	.certs li:nth-child(even) .note {
-		transform: rotate(0.7deg);
-	}
-
-	.after-list {
-		margin-top: 1rem;
+	header .lang {
+		grid-column: 1;
+		grid-row: 3;
 	}
 
 	.inline li {
@@ -287,12 +205,16 @@ const otherLangHref = t.otherLang.code === 'es' ? '/es' : '/';
 		content: ', ';
 	}
 
-	.contact li + li {
-		margin-top: 0.25rem;
+	/* Rule plus space always adds up to two whole lines, so baselines hold. */
+	section {
+		margin-top: calc(var(--line) * 1.5 - 1px);
+		padding-top: calc(var(--line) * 0.5);
+		border-top: 1px solid var(--quiet);
 	}
 
 	a {
 		color: inherit;
+		padding-block: 0.1875rem; /* 24px hit area, no layout shift */
 		text-decoration: underline;
 		text-decoration-thickness: 1px;
 		text-underline-offset: 0.18em;
@@ -303,9 +225,8 @@ const otherLangHref = t.otherLang.code === 'es' ? '/es' : '/';
 	}
 
 	a:focus-visible {
-		outline: 3px solid var(--ink);
-		outline-offset: 3px;
-		border-radius: 1px;
+		outline: 2px solid var(--ink);
+		outline-offset: 2px;
 	}
 
 	@media (prefers-reduced-motion: no-preference) {
@@ -314,42 +235,51 @@ const otherLangHref = t.otherLang.code === 'es' ? '/es' : '/';
 		}
 	}
 
-	/* Narrow sheet: the notes move above their entry. */
-	@media (max-width: 46rem) {
-		body {
-			padding-inline: 1.25rem;
-			font-size: 1.125rem;
+	/* Narrow sheet: the left column stacks above the right, in the same order. */
+	@media screen and (max-width: 40rem) {
+		.sheet {
+			padding: calc(var(--line) * 2) 1.25rem;
 		}
 
-		.row {
+		.row,
+		header {
 			display: block;
 		}
 
-		.margin {
-			margin-bottom: 0.375rem;
-			text-align: left;
+		header .lang {
+			margin-top: var(--line);
 		}
 
-		.note {
-			transform-origin: 0 50%;
+		.row + .row {
+			margin-top: var(--line);
 		}
 
-		.margin .tilt-b {
-			margin-top: 0.25rem;
-		}
-
-		.work .margin {
-			margin-bottom: 0.625rem;
-		}
-
-		.contact li + li {
-			margin-top: 0.625rem;
+		h2 {
+			margin-bottom: var(--line);
 		}
 	}
 
 	@media print {
-		@page { margin: 1.5cm; }
-		body { padding: 0; font-size: 11pt; }
-		section, footer, .work { margin-block: 1.25rem 0; break-inside: avoid; }
+		@page {
+			size: A4;
+			margin: 20mm;
+		}
+
+		html {
+			font-size: 11pt;
+		}
+
+		.sheet {
+			max-width: none;
+			padding: 0;
+		}
+
+		section {
+			break-inside: avoid;
+		}
+
+		a {
+			text-decoration-thickness: 0.5pt;
+		}
 	}
 </style>
