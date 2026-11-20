@@ -56,11 +56,20 @@ export const certifications: Certification[] = [
 
 export const tech = ['Laravel', 'Vue', 'React', 'Astro', 'Node.js', 'Express', 'MySQL', 'MongoDB', 'Redis', 'Git', 'Docker', 'Claude', 'Salesforce', 'Apex', 'LWC'];
 
-export const project = {
-	name: 'Viajes',
-	url: 'https://viajes.fernandoestrada.dev',
-	stack: ['Vue', 'Hono', 'Cloudflare Workers', 'D1', 'R2'],
-};
+export const projects = [
+	{
+		id: 'viajes',
+		name: 'Viajes',
+		url: 'https://viajes.fernandoestrada.dev',
+		stack: ['Vue', 'Hono', 'Cloudflare Workers', 'D1', 'R2'],
+	},
+	{
+		id: 'monsters',
+		name: 'Monsters',
+		url: 'https://monsters.fernandoestrada.dev',
+		stack: ['React', 'TypeScript', 'Cloudflare Workers', 'Durable Objects', 'Bun', 'SQLite'],
+	},
+] as const;
 
 export const cv = {
 	en: {
@@ -88,7 +97,10 @@ export const cv = {
 			title: 'Higher Education Diploma in Web Application Development',
 			period: '2022 to 2024',
 		},
-		projectSummary: 'A web app for planning group trips: itinerary, packing, shared expenses and photos. People use it on real trips.',
+		projectSummaries: {
+			viajes: 'A web app for planning group trips: itinerary, packing, shared expenses and photos. People use it on real trips.',
+			monsters: 'Party minigames played from your phone. Everyone joins a room with a four-letter code; a TV can act as the shared screen. Eight games, from drawing and bluffing to a real-time red light, green light.',
+		},
 		certificationsLink: 'All certifications on LinkedIn',
 		builtWith: 'Built with',
 	},
@@ -117,7 +129,10 @@ export const cv = {
 			title: 'Grado Superior en Desarrollo de Aplicaciones Web',
 			period: '2022 a 2024',
 		},
-		projectSummary: 'Una aplicación web para planificar viajes en grupo: itinerario, maleta, gastos compartidos y fotos. Se usa en viajes reales.',
+		projectSummaries: {
+			viajes: 'Una aplicación web para planificar viajes en grupo: itinerario, maleta, gastos compartidos y fotos. Se usa en viajes reales.',
+			monsters: 'Minijuegos para jugar en grupo desde el móvil. Cada uno entra en la sala con un código de cuatro letras y una tele puede hacer de pantalla común. Ocho juegos, de dibujar y engañar a un «luz roja, luz verde» en tiempo real.',
+		},
 		certificationsLink: 'Todas las certificaciones en LinkedIn',
 		builtWith: 'Hecho con',
 	},

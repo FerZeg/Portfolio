@@ -1,5 +1,5 @@
 ---
-import { cv, links, certifications, tech, project, atlasStart, tenure, type Lang } from '../cv';
+import { cv, links, certifications, tech, projects, atlasStart, tenure, type Lang } from '../cv';
 
 // English lives at /, Spanish at /es.
 export function getStaticPaths() {
@@ -52,15 +52,17 @@ const otherLangHref = t.otherLang.code === 'es' ? '/es' : '/';
 
 				<section>
 					<h2>{t.headings.projects}</h2>
-					<div class="row">
-						<div class="what">
-							<h3><a href={project.url}>{project.name}</a></h3>
-							<p class="quiet">{t.projectSummary}</p>
-							<ul class="inline quiet" aria-label={t.builtWith}>
-								{project.stack.map((item) => <li>{item}</li>)}
-							</ul>
+					{projects.map((project) => (
+						<div class="row">
+							<div class="what">
+								<h3><a href={project.url}>{project.name}</a></h3>
+								<p class="quiet">{t.projectSummaries[project.id]}</p>
+								<ul class="inline quiet" aria-label={t.builtWith}>
+									{project.stack.map((item) => <li>{item}</li>)}
+								</ul>
+							</div>
 						</div>
-					</div>
+					))}
 				</section>
 
 				<section>
@@ -181,6 +183,11 @@ const otherLangHref = t.otherLang.code === 'es' ? '/es' : '/';
 
 	.quiet {
 		color: var(--quiet);
+	}
+
+	/* Stacked entries (projects) keep one blank line between them. */
+	section > .row + .row {
+		margin-top: var(--line);
 	}
 
 	header h1 {
