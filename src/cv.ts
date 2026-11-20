@@ -67,7 +67,7 @@ export const projects = [
 		id: 'monsters',
 		name: 'Monsters',
 		url: 'https://monsters.fernandoestrada.dev',
-		stack: ['React', 'TypeScript', 'Cloudflare Workers', 'Durable Objects', 'Bun', 'SQLite'],
+		stack: ['React', 'TypeScript', 'Bun', 'WebSockets', 'SQLite', 'Docker'],
 	},
 ] as const;
 
